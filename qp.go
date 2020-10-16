@@ -60,19 +60,12 @@ func Params(r *http.Request, keys ...string) map[string][]string {
 	return values
 }
 
-func Param(r *http.Request, keys ...string) map[string]string {
-	qs := r.URL.Query()
-	var values map[string]string
-
-	for _, ps := range keys {
-		if p, ok := qs[ps]; ok {
-			if values == nil {
-				values = make(map[string]string)
-			}
-
-			values[ps] = p[0]
-		}
+// Param returns a single query parameter. The bool is false if the parameter was not found.
+// Only the first occurrence of the parameter will be returned.
+func Param(r *http.Request, key string) (string, bool) {
+	if p, ok := r.URL.Query()[key]; ok {
+		return p[0], true
 	}
 
-	return values
+	return "", false
 }
