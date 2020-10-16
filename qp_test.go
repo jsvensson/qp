@@ -115,7 +115,7 @@ func TestParams(t *testing.T) {
 				Convey("The value is extracted", func() {
 					So(params, ShouldNotBeNil)
 					So(params, ShouldHaveLength, 1)
-					So(params[0], ShouldEqual, "1")
+					So(params["required"][0], ShouldEqual, "1")
 				})
 			})
 
@@ -127,9 +127,9 @@ func TestParams(t *testing.T) {
 
 				Convey("The values are extracted", func() {
 					So(params, ShouldNotBeNil)
-					So(params, ShouldHaveLength, 2)
-					So(params[0], ShouldEqual, "1")
-					So(params[1], ShouldEqual, "2")
+					So(params, ShouldHaveLength, 1)
+					So(params["required"][0], ShouldEqual, "1")
+					So(params["required"][1], ShouldEqual, "2")
 				})
 			})
 
